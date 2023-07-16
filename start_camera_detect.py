@@ -85,3 +85,9 @@ def start_camera(flip = True, res=(640,480), model_path = '.', id2name_path = '.
             cam.stop()
             break
 
+def main():
+    start_camera(model_path=model_path, id2name_path=id2name_path)
+
+if __name__ == '__main__':
+    main()
+
