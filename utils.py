@@ -14,8 +14,6 @@
 """Utility functions to display the pose detection results."""
 
 import cv2
-import numpy as np
-from winerror import STG_S_CONVERTED
 
 _MARGIN = 15  # pixels
 _ROW_SIZE = 10  # pixels
@@ -55,9 +53,8 @@ def visualize(img, bboxes, class_id, scores, score_thres, label_dict):
   return img
 
 def create_label_dict(label_file_path):
-  
+  # Create a dictionary that maps class ID to class name
   label_dict = {}
-
   try:
     with open(label_file_path) as f:
         i = 0

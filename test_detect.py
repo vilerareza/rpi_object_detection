@@ -16,7 +16,6 @@ score_threshold = 0.2
 label_path = 'labelmap.txt'
 
 
-
 def run(model, test_img_path, label_dict) -> None:
 
     # Initialize the object detector
@@ -25,10 +24,10 @@ def run(model, test_img_path, label_dict) -> None:
     interpreter_output = interpreter.get_output_details()
     interpreter_input = interpreter.get_input_details()[0]
 
+    # Reading image from file
     img_ori = cv.imread(test_img_path, 1)
     img = img_ori.copy()
 
-    img = cv.imread(test_img_path, 1)
     # Convert BGR to RGB
     img = img[:,:,::-1]
     # The EfficientDet model require the input size to be (320 x 320) 
