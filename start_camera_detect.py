@@ -72,7 +72,7 @@ def start_camera(flip = True, res=(640,480), model_path = '.', id2name_path = '.
                 for i in range(len(bboxes)):
                     if scores[i] >= det_score_thres:
                         try:
-                            print (f'{id2name_dict[class_id[i]]}, Score: {scores[i]}')
+                            print (f'{(id2name_dict[class_id[i]]).strip()}, Score: {scores[i]}')
                         except:
                             print (f'Class name does not exist for label ID {class_id[i]}') 
 
