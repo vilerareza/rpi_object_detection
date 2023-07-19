@@ -13,7 +13,7 @@ test_image_path = 'test_data/test_img_1.jpg'
 # Path to test image annotated with prediction bounding box
 test_image_bbox_path = 'test_data/test_img_1_bbox.jpg'
 # Detection score threshold
-det_score_thres = 0.5
+det_score_thres = 0.6
 # Path to id2name txt file
 id2name_path = 'labelmap.txt'
 
