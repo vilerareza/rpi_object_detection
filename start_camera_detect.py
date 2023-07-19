@@ -13,7 +13,7 @@ test_image_path = 'test_data/test_img_1.jpg'
 # Path to test image annotated with prediction bounding box
 test_image_bbox_path = 'test_data/test_img_1_bbox.jpg'
 # Detection score threshold
-det_score_thres = 0.2
+det_score_thres = 0.5
 # Path to id2name txt file
 id2name_path = 'labelmap.txt'
 
@@ -72,7 +72,7 @@ def start_camera(flip = True, res=(640,480), model_path = '.', id2name_path = '.
                 for i in range(len(bboxes)):
                     if scores[i] >= det_score_thres:
                         try:
-                            print (id2name_dict[class_id[i]])
+                            print (f'{id2name_dict[class_id[i]]}, Score: {scores[i]}')
                         except:
                             print (f'Class name does not exist for label ID {class_id[i]}') 
 
