@@ -55,11 +55,11 @@ def start_camera(flip = True, res=(640,480), model_path = '.', id2name_path = '.
             frame = frame[:,:,::-1]
             # The EfficientDet model require the input size to be (320 x 320) 
             frame = cv.resize(frame,(320,320))
-            frame = np.expand_dims(frame, axis=0)
-            print (frame.shape)
             # Flip
-            #if flip:
-            #    frame = cv.rotate(frame, cv.ROTATE_180)
+            if flip:
+               frame = cv.rotate(frame, cv.ROTATE_180)
+
+            frame = np.expand_dims(frame, axis=0)
 
             ''' Run onject detection '''
             detector.set_tensor(detector_input['index'], frame)
