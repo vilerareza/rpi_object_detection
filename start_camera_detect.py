@@ -7,20 +7,17 @@ from utils import create_label_dict
 
 
 # Path to tflite model
-model_path = 'efficientdet_lite0.tflite'
-# Path to test image
-test_image_path = 'test_data/test_img_1.jpg'
-# Path to test image annotated with prediction bounding box
-test_image_bbox_path = 'test_data/test_img_1_bbox.jpg'
+model_path = 'model_obj_detection.tflite'
 # Detection score threshold
 det_score_thres = 0.6
 # Path to id2name txt file
-id2name_path = 'labelmap.txt'
+id2name_path = 'labelmap_new.txt'
 
 
 def create_detector(model_path):
     # Initialize the object detector
     detector = tflite.Interpreter(model_path)
+    # Allocate memory for the model's input `Tensor`s
     detector.allocate_tensors()
     return detector
 
@@ -55,14 +52,14 @@ def start_camera(flip = True, res=(640,480), model_path = '.', id2name_path = '.
             # Convert BGR to RGB
             frame = frame[:,:,::-1]
             # The EfficientDet model require the input size to be (320 x 320) 
-            frame = cv.resize(frame,(320,320))
+            frame = cv.resize(frame,(300,300))
             # Flip
             if flip:
                frame = cv.rotate(frame, cv.ROTATE_180)
 
             frame = np.expand_dims(frame, axis=0)
 
-            ''' Run onject detection '''
+            ''' Run object detection '''
             detector.set_tensor(detector_input['index'], frame)
             detector.invoke()
             bboxes = detector.get_tensor(detector_output[0]['index'])[0]
