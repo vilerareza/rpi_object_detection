@@ -52,7 +52,7 @@ def start_camera(flip = True, res=(640,480), model_path = '.', id2name_path = '.
             # Convert BGR to RGB
             frame = frame[:,:,::-1]
             # The EfficientDet model require the input size to be (320 x 320) 
-            frame = cv.resize(frame,(300,300))
+            frame = cv.resize(frame,(640,640))
             # Flip
             if flip:
                frame = cv.rotate(frame, cv.ROTATE_180)
