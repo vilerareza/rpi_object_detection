@@ -4,7 +4,7 @@ import tflite_runtime.interpreter as tflite
 from utils import visualize, create_label_dict
 
 # Path to tflite model
-model_path = 'efficientdet_lite0.tflite'
+model_path = 'model_obj_detection.tflite'
 #model_path = 'lite-model_efficientdet_lite0_detection_metadata_1.tflite'
 # Path to test image
 test_image_path = 'test_data/test_img_1.jpg'
@@ -13,7 +13,7 @@ test_image_bbox_path = 'test_data/test_img_1_bbox.jpg'
 # Score threshold
 score_threshold = 0.2
 # Path to label txt
-label_path = 'labelmap.txt'
+label_path = 'labelmap_new.txt'
 
 
 def run(model, test_img_path, label_dict) -> None:
@@ -31,7 +31,7 @@ def run(model, test_img_path, label_dict) -> None:
     # Convert BGR to RGB
     img = img[:,:,::-1]
     # The EfficientDet model require the input size to be (320 x 320) 
-    img = cv.resize(img,(320,320))
+    img = cv.resize(img,(384,384))
     img = np.expand_dims(img, axis=0)
     # Run object detection estimation using the model.
     interpreter.set_tensor(interpreter_input['index'], img)
