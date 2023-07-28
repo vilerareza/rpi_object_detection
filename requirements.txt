@@ -1,3 +1,4 @@
 tflite-runtime
 protobuf
 picamera2
+dlib
