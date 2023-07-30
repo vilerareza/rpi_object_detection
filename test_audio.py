@@ -17,10 +17,12 @@ mixer.music.load(audio_path)
 mixer.music.set_volume(vol)
 # Play the audio file
 
+print ('Connect speaker device to 3.5mm stereo audio jack at the RPi')
+
 while True:
 
     mixer.music.play()
-    query = input("Press 'r' to play again or 'q' to quit")
+    query = input("Press 'r' to play again or 'q' to quit: ")
     if query == 'q':
         break
     time.sleep(1)
