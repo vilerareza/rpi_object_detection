@@ -20,7 +20,7 @@ mixer.music.set_volume(vol)
 while True:
 
     mixer.music.play()
-    query = input("Press 'q' to quit the loop.")
+    query = input("Press 'r' to play again or 'q' to quit")
     if query == 'q':
         break
     time.sleep(1)
