@@ -3,7 +3,7 @@ import time
 from picamera2 import Picamera2
 import cv2 as cv
 import dlib
-from pygame import mixer
+from pygame import mixer as audio_mixer
 
 
 def start_camera(flip = True, res=(640,480), audio_out=None):
@@ -77,11 +77,11 @@ if __name__ == '__main__':
     if audio_enabled:
         try:
             # Initialize pygame mixer
-            audio_out = mixer.init()
+            audio_mixer.init()
             # Loading the audio
-            audio_out.music.load(audio_file_path)
+            audio_mixer.music.load(audio_file_path)
             # Setting the volume
-            audio_out.music.set_volume(audio_vol)
+            audio_mixer.music.set_volume(audio_vol)
             # Play the audio file
 
         except Exception as e:
@@ -92,4 +92,4 @@ if __name__ == '__main__':
         audio_out = None
 
     # Run
-    main(audio_out=audio_out)
+    main(audio_out=audio_mixer)
