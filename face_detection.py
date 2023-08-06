@@ -39,10 +39,9 @@ def start_camera(flip = True, res=(640,480), audio_out=None):
             if len(rects) != 0:
                 print (f'Face detected: {len(rects)}')
                 if audio_out is not None:
-                    #if not audio_out.music.get_busy():
-                    audio_out.music.play()
-                    # Play the audio
-                    print(audio_mixer.music.get_busy())
+                    if not audio_mixer.music.get_busy():
+                        # Play the audio
+                        audio_out.music.play()
                     #if not audio_out.music.get_busy():
                     #audio_out.music.play()
         
