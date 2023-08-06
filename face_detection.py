@@ -3,9 +3,10 @@ import time
 from picamera2 import Picamera2
 import cv2 as cv
 import dlib
+from pygame import mixer
 
 
-def start_camera(flip = True, res=(640,480)):
+def start_camera(flip = True, res=(640,480), audio_out=None):
 
     # define a video capture object
     cam = Picamera2()
@@ -35,6 +36,9 @@ def start_camera(flip = True, res=(640,480)):
 
             if len(rects) != 0:
                 print (f'Face detected: {len(rects)}')
+                if audio_out is not None:
+                    # Play the audio
+                    audio_out.music.play()
         
             #t2 = time.time()
             #print (f'frame_time: {t2-t1}')
@@ -46,23 +50,46 @@ def start_camera(flip = True, res=(640,480)):
             break
 
 
-def main(predictor_path = '.', res = (640, 480)):
+def main(predictor_path = '.', res = (640, 480), audio_out = None):
     
     print ('Starting...')
 
     # Start camera
-    start_camera()
+    start_camera(audio_out=audio_out)
 
 
 if __name__ == '__main__':
 
     # Argument handler
     parser = argparse.ArgumentParser()
-    parser.add_argument('--pred_path', type = str, default = '../shape_predictor_68_face_landmarks.dat', required = False)
+    # parser.add_argument('--pred_path', type = str, default = '../shape_predictor_68_face_landmarks.dat', required = False)
+    parser.add_argument('--audio_enabled', type = bool, default = True, required = False)
+    parser.add_argument('--audio_file_path', type = str, default = 'audio_test.mp3', required = False)
+    parser.add_argument('--audio_vol', type = float, default = 0.7, required = False)
 
     # Parsing
     args = parser.parse_args()
-    predictor_path = args.pred_path
+    # predictor_path = args.pred_path
+    audio_enabled = args.audio_enabled
+    audio_file_path = args.audio_file_path
+    audio_vol = args.audio_vol
+
+    if audio_enabled:
+        try:
+            # Initialize pygame mixer
+            audio_out = mixer.init()
+            # Loading the audio
+            audio_out.music.load(audio_file_path)
+            # Setting the volume
+            audio_out.music.set_volume(audio_vol)
+            # Play the audio file
+
+        except Exception as e:
+            print (f'Error {e}: Check if the audio file path {audio_file_path} is correct')
+            # Exit the program
+            exit()
+    else:
+        audio_out = None
 
     # Run
-    main(predictor_path)
+    main(audio_out=audio_out)
