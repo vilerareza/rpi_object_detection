@@ -42,7 +42,7 @@ def start_camera(flip = True, res=(640,480), audio_out=None):
                     # Play the audio
                     print(audio_mixer.get_busy())
                     #if not audio_out.music.get_busy():
-                        # audio_out.music.play()
+                    audio_out.music.play()
         
             #t2 = time.time()
             #print (f'frame_time: {t2-t1}')
