@@ -42,7 +42,7 @@ def start_camera(flip = True, res=(640,480), audio_out=None):
                     #if not audio_out.music.get_busy():
                     audio_out.music.play()
                     # Play the audio
-                    print(audio_mixer.nusic.get_busy())
+                    print(audio_mixer.music.get_busy())
                     #if not audio_out.music.get_busy():
                     #audio_out.music.play()
         
