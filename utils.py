@@ -18,8 +18,8 @@ import cv2
 _MARGIN = 15  # pixels
 _ROW_SIZE = 10  # pixels
 _FONT_SIZE = 1
-_FONT_THICKNESS = 2
-_TEXT_COLOR = (255, 50, 50)  # red
+_FONT_THICKNESS = 5
+_TEXT_COLOR = (50, 255, 50)  # green
 
 
 def visualize(img, bboxes, class_id, scores, score_thres, label_dict):
@@ -43,7 +43,7 @@ def visualize(img, bboxes, class_id, scores, score_thres, label_dict):
 
       # Draw label and score
       class_name = (label_dict[class_id[i]]).strip()
-      score = round(scores[i], 2)
+      score = str(round(scores[i], 2))[:4]
       result_text = f'{class_name}: {score}'
       text_location = (_MARGIN + int(bboxes[i][1]*factor_w),
                       _MARGIN + _ROW_SIZE + int(bboxes[i][0]*factor_h))
