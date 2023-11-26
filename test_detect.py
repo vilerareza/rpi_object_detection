@@ -4,7 +4,7 @@ import tflite_runtime.interpreter as tflite
 from utils import visualize, create_label_dict
 
 # Path to tflite model
-model_path = 'model_obj_detection.tflite'
+model_path = 'models/model_obj_detection.tflite'
 #model_path = 'lite-model_efficientdet_lite0_detection_metadata_1.tflite'
 # Path to test image
 test_image_path = 'test_data/test_img_1.jpg'
