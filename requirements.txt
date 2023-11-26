@@ -3,4 +3,8 @@ opencv-python
 tflite-runtime
 protobuf
 picamera2
-dlib
+
+# dlib is required but need to be installed from source
+# wget https://github.com/prepkg/dlib-raspberrypi/releases/latest/download/dlib_64.deb
+# sudo apt install -y ./dlib_64.deb
+# sudo rm dlib_64.deb
