@@ -19,7 +19,7 @@ _MARGIN = 25  # pixels
 _ROW_SIZE = 10  # pixels
 _FONT_SIZE = 3
 _FONT_THICKNESS = 3
-_TEXT_COLOR = (255, 50, 50)  # green
+_TEXT_COLOR = (0, 255, 0)  # green
 
 
 def visualize(img, bboxes, class_id, scores, score_thres, label_dict):
