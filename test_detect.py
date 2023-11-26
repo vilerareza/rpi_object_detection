@@ -11,7 +11,7 @@ test_image_path = 'test_data/test_img_1.jpg'
 # Path to test image annotated with prediction bounding box
 test_image_bbox_path = 'test_data/test_img_1_bbox.jpg'
 # Score threshold
-score_threshold = 0.2
+score_threshold = 0.5
 # Path to label txt
 label_path = 'labelmap_new.txt'
 
