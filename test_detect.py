@@ -31,7 +31,7 @@ def run(model, test_img_path, label_dict) -> None:
     # Convert BGR to RGB
     img = img[:,:,::-1]
     # The EfficientDet model require the input size to be (640 x 640) 
-    img = cv.resize(img,(320,320))
+    img = cv.resize(img,(384,384))
     img = np.expand_dims(img, axis=0)
     # Run object detection estimation using the model.
     interpreter.set_tensor(interpreter_input['index'], img)
