@@ -17,8 +17,8 @@ import cv2
 
 _MARGIN = 15  # pixels
 _ROW_SIZE = 10  # pixels
-_FONT_SIZE = 1
-_FONT_THICKNESS = 5
+_FONT_SIZE = 5
+_FONT_THICKNESS = 3
 _TEXT_COLOR = (50, 255, 50)  # green
 
 
