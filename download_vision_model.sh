@@ -1,8 +1,7 @@
 #!/bin/bash
 
 if [ $# -eq 0 ]; then
-  DATA_DIR="./models"
-  mkdir ${DATA_DIR}
+  DATA_DIR="./"
 else
   DATA_DIR="$1"
 fi
