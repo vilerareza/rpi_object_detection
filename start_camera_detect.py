@@ -7,7 +7,7 @@ from utils import visualize, create_label_dict
 
 
 # Path to tflite model
-model_path = 'model_obj_detection.tflite'
+model_path = 'models/model_obj_detection.tflite'
 # Detection score threshold
 det_score_thres = 0.6
 # Path to id2name txt file
