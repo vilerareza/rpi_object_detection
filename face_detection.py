@@ -6,6 +6,15 @@ import dlib
 from pygame import mixer as audio_mixer
 
 
+# Function to extract face bounding box coordinates
+def get_face_rect(img, dlib_rect):
+    x1 = max(0, dlib_rect.left())
+    y1 = max(0, dlib_rect.top())
+    x2 = min(dlib_rect.right(), img.shape[1])
+    y2 = min(dlib_rect.bottom(), img.shape[0])
+    return [(x1,y1), (x2,y2)]
+
+
 def start_camera(flip = True, res=(640,480), audio_out=None):
 
     # define a video capture object
@@ -41,7 +50,15 @@ def start_camera(flip = True, res=(640,480), audio_out=None):
                     if not audio_out.music.get_busy():
                         # If the audio is not playing then play the audio
                         audio_out.music.play()
-        
+                
+                for rect in rects:
+                    # Draw bounding box on the frame
+                    start_pt, end_pt = get_face_rect(img_gray, rect)
+                    cv.rectangle(frame, 
+                        start_pt,
+                        end_pt, 
+                        (0,255,0), 
+                        3)
 
             # Display the resulting frame
             cv.imshow('frame', frame)
