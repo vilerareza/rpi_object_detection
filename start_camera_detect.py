@@ -47,6 +47,10 @@ def start_camera(flip = False, res=(640,480), model_path = '.', id2name_path = '
             t1 = time.time()
             # Read the frame
             frame_ori = cam.capture_array()
+            
+            # Flip
+            if flip:
+               frame_ori = cv.rotate(frame_ori, cv.ROTATE_180)
 
             ''' Preprocess '''
             # Convert BGR to RGB
@@ -54,10 +58,7 @@ def start_camera(flip = False, res=(640,480), model_path = '.', id2name_path = '
             # The EfficientDet model require the input size to be (320 x 320) 
             frame = cv.resize(frame,(384,384))
             frame = frame[:,:,::-1]
-            # Flip
-            if flip:
-               frame = cv.rotate(frame, cv.ROTATE_180)
-
+            
             frame = np.expand_dims(frame, axis=0)
 
             ''' Run object detection '''
