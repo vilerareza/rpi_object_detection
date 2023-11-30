@@ -22,7 +22,7 @@ def create_detector(model_path):
     return detector
 
 
-def start_camera(flip = True, res=(640,480), model_path = '.', id2name_path = '.', det_score_thres=0.2):
+def start_camera(flip = False, res=(640,480), model_path = '.', id2name_path = '.', det_score_thres=0.2):
 
     # Creating detector
     detector = create_detector(model_path)  
@@ -47,11 +47,11 @@ def start_camera(flip = True, res=(640,480), model_path = '.', id2name_path = '.
             t1 = time.time()
             # Read the frame
             frame_ori = cam.capture_array()
+            frame_ori = frame_ori[:,:,::-1]
 
             ''' Preprocess '''
             # Convert BGR to RGB
             frame = frame_ori.copy()
-            frame = frame[:,:,::-1]
             # The EfficientDet model require the input size to be (320 x 320) 
             frame = cv.resize(frame,(384,384))
             # Flip
