@@ -90,7 +90,7 @@ if __name__ == '__main__':
     # Argument handler
     parser = argparse.ArgumentParser()
     # parser.add_argument('--pred_path', type = str, default = '../shape_predictor_68_face_landmarks.dat', required = False)
-    parser.add_argument('--audio_enabled', type = bool, default = True, required = False)
+    parser.add_argument('--audio_enabled', type = bool, default = False, required = False)
     parser.add_argument('--audio_file_path', type = str, default = './test_data/audio_test.mp3', required = False)
     parser.add_argument('--audio_vol', type = float, default = 0.7, required = False)
 
