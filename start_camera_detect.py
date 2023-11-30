@@ -22,7 +22,7 @@ def create_detector(model_path):
     return detector
 
 
-def start_camera(flip = False, res=(640,480), model_path = '.', id2name_path = '.', det_score_thres=0.2):
+def start_camera(flip = True, res=(640,480), model_path = '.', id2name_path = '.', det_score_thres=0.2):
 
     # Creating detector
     detector = create_detector(model_path)  
