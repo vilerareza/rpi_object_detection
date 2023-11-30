@@ -47,13 +47,13 @@ def start_camera(flip = False, res=(640,480), model_path = '.', id2name_path = '
             t1 = time.time()
             # Read the frame
             frame_ori = cam.capture_array()
-            frame_ori = frame_ori[:,:,::-1]
 
             ''' Preprocess '''
             # Convert BGR to RGB
             frame = frame_ori.copy()
             # The EfficientDet model require the input size to be (320 x 320) 
             frame = cv.resize(frame,(384,384))
+            frame = frame[:,:,::-1]
             # Flip
             if flip:
                frame = cv.rotate(frame, cv.ROTATE_180)
@@ -87,8 +87,10 @@ def start_camera(flip = False, res=(640,480), model_path = '.', id2name_path = '
                                               scores, 
                                               det_score_thres, 
                                               id2name_dict)
-
+            
             # Display the resulting frame
+            # Covert BGR to RGB for visualization
+            frame_ori = frame_ori[:,:,::-1]
             cv.imshow('frame', frame_ori)
 
             # the 'q' button is set as the
