@@ -3,7 +3,7 @@ from picamera2 import Picamera2
 import cv2 as cv
 import numpy as np
 import tflite_runtime.interpreter as tflite
-from utils import create_label_dict
+from utils import visualize, create_label_dict
 
 
 # Path to tflite model
@@ -46,10 +46,11 @@ def start_camera(flip = True, res=(640,480), model_path = '.', id2name_path = '.
         try:
             t1 = time.time()
             # Read the frame
-            frame = cam.capture_array()
+            frame_ori = cam.capture_array()
 
             ''' Preprocess '''
             # Convert BGR to RGB
+            frame = frame_ori.copy()
             frame = frame[:,:,::-1]
             # The EfficientDet model require the input size to be (320 x 320) 
             frame = cv.resize(frame,(384,384))
@@ -66,13 +67,33 @@ def start_camera(flip = True, res=(640,480), model_path = '.', id2name_path = '.
             class_id = detector.get_tensor(detector_output[1]['index'])[0]
             scores = detector.get_tensor(detector_output[2]['index'])[0]
 
+            # Check if any object is detected
             if len(bboxes) != 0:
                 for i in range(len(bboxes)):
+
+                    # Check if score is above threshold
                     if scores[i] >= det_score_thres:
+
+                        # Print deteced objects and scores on the terminal
                         try:
                             print (f'{(id2name_dict[class_id[i]]).strip()}, Score: {scores[i]}')
                         except:
                             print (f'Class name does not exist for label ID {class_id[i]}') 
+
+                        # Create annotated image to visualize
+                        frame_ori = visualize(frame_ori, 
+                                              bboxes, 
+                                              class_id, 
+                                              scores, 
+                                              det_score_thres, 
+                                              id2name_dict)
+
+            # Display the resulting frame
+            cv.imshow('frame', frame_ori)
+
+            # the 'q' button is set as the
+            if cv.waitKey(1) & 0xFF == ord('q'):
+                break
 
             t2 = time.time()
             #print (f'frame_time: {t2-t1}')

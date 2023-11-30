@@ -26,7 +26,7 @@ def start_camera(flip = True, res=(640,480), audio_out=None):
             # Read the frame
             frame = cam.capture_array()
             # Frame conversion to gray
-            img_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+            img_gray = cv.cvtColor(frame.copy, cv.COLOR_BGR2GRAY)
             # Flip
             if flip:
                 img_gray = cv.rotate(img_gray, cv.ROTATE_180)
@@ -42,6 +42,14 @@ def start_camera(flip = True, res=(640,480), audio_out=None):
                         # If the audio is not playing then play the audio
                         audio_out.music.play()
         
+
+            # Display the resulting frame
+            cv.imshow('frame', frame)
+
+            # the 'q' button is set as the
+            if cv.waitKey(1) & 0xFF == ord('q'):
+                break
+
             #t2 = time.time()
             #print (f'frame_time: {t2-t1}')
 
