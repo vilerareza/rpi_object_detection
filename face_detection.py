@@ -63,7 +63,7 @@ def start_camera(flip = True, res=(640,480), audio_out=None):
                         3)
 
             # Display the resulting frame
-            frame_ori = frame_ori[:,:,::-1]
+            frame = frame[:,:,::-1]
             cv.imshow('frame', frame)
 
             # the 'q' button is set as the
