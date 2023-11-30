@@ -33,12 +33,14 @@ def start_camera(flip = True, res=(640,480), audio_out=None):
         try:
             #t1 = time.time()
             # Read the frame
-            frame = cam.capture_array()
-            # Frame conversion to gray
-            img_gray = cv.cvtColor(frame.copy(), cv.COLOR_BGR2GRAY)
+            frame = cam.capture_array()            
+            
             # Flip
             if flip:
-                img_gray = cv.rotate(img_gray, cv.ROTATE_180)
+                frame = cv.rotate(frame, cv.ROTATE_180)
+            
+            # Frame conversion to gray
+            img_gray = cv.cvtColor(frame.copy(), cv.COLOR_BGR2GRAY)
 
             # Face detection
             rects = face_detector(img_gray, 0)
@@ -61,6 +63,7 @@ def start_camera(flip = True, res=(640,480), audio_out=None):
                         3)
 
             # Display the resulting frame
+            frame_ori = frame_ori[:,:,::-1]
             cv.imshow('frame', frame)
 
             # the 'q' button is set as the
